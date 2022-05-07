@@ -1,0 +1,1 @@
+export const myBaseUrl = "http://127.0.0.1:9527/"; //资源地址

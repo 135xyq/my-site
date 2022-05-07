@@ -1,0 +1,1202 @@
+sql: 2022-04-22 22:05:16 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:05:16 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 22:05:17 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:05:17 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:22 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:25 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:27 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:05:28 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 22:05:28 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:05:28 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 22:05:28 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:05:29 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:30 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:05:31 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-04-22 22:05:32 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:33 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-04-22 22:05:34 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:34 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:36 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:05:37 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:05:45 INFO  Executing (default): SHOW INDEX FROM `Article`
+
+sql: 2022-04-22 22:05:46 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Comment` (`id` INTEGER NOT NULL auto_increment , `nickName` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `ArticleId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:05:46 INFO  Executing (default): SHOW FULL COLUMNS FROM `Comment`;
+
+sql: 2022-04-22 22:05:46 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Comment' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:05:47 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `nickName` `nickName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:49 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:05:49 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:50 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:50 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:50 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:05:51 INFO  Executing (default): ALTER TABLE `Comment` ADD FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:05:54 INFO  Executing (default): SHOW INDEX FROM `Comment`
+
+sql: 2022-04-22 22:05:55 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Admin` (`id` INTEGER NOT NULL auto_increment , `userName` VARCHAR(255) NOT NULL, `password` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:05:55 INFO  Executing (default): SHOW FULL COLUMNS FROM `Admin`;
+
+sql: 2022-04-22 22:05:55 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Admin' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:05:55 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `userName` `userName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:55 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `password` `password` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:55 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:56 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:56 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:57 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:05:57 INFO  Executing (default): SHOW INDEX FROM `Admin`
+
+sql: 2022-04-22 22:05:57 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Project` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `description` VARCHAR(255) NOT NULL, `linkUrl` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255) NOT NULL, `github` VARCHAR(255), `order` INTEGER DEFAULT 1, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:05:57 INFO  Executing (default): SHOW FULL COLUMNS FROM `Project`;
+
+sql: 2022-04-22 22:05:57 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Project' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:05:57 INFO  Executing (default): ALTER TABLE `Project` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:58 INFO  Executing (default): ALTER TABLE `Project` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:58 INFO  Executing (default): ALTER TABLE `Project` CHANGE `linkUrl` `linkUrl` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:58 INFO  Executing (default): ALTER TABLE `Project` CHANGE `thumb` `thumb` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:05:58 INFO  Executing (default): ALTER TABLE `Project` CHANGE `github` `github` VARCHAR(255);
+
+sql: 2022-04-22 22:05:59 INFO  Executing (default): ALTER TABLE `Project` CHANGE `order` `order` INTEGER DEFAULT 1;
+
+sql: 2022-04-22 22:05:59 INFO  Executing (default): ALTER TABLE `Project` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:05:59 INFO  Executing (default): ALTER TABLE `Project` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:06:00 INFO  Executing (default): ALTER TABLE `Project` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:06:01 INFO  Executing (default): SHOW INDEX FROM `Project`
+
+sql: 2022-04-22 22:06:01 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER NOT NULL auto_increment , `bg` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `qq` VARCHAR(255) NOT NULL, `weixin` VARCHAR(255) NOT NULL, `email` VARCHAR(255) NOT NULL, `selfDescription` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:06:01 INFO  Executing (default): SHOW FULL COLUMNS FROM `About`;
+
+sql: 2022-04-22 22:06:01 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'About' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:06:01 INFO  Executing (default): ALTER TABLE `About` CHANGE `bg` `bg` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:06:01 INFO  Executing (default): ALTER TABLE `About` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:06:03 INFO  Executing (default): ALTER TABLE `About` CHANGE `qq` `qq` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:06:04 INFO  Executing (default): ALTER TABLE `About` CHANGE `weixin` `weixin` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:06:04 INFO  Executing (default): ALTER TABLE `About` CHANGE `email` `email` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:06:04 INFO  Executing (default): ALTER TABLE `About` CHANGE `selfDescription` `selfDescription` TEXT NOT NULL;
+
+sql: 2022-04-22 22:06:05 INFO  Executing (default): ALTER TABLE `About` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:06:05 INFO  Executing (default): ALTER TABLE `About` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:06:06 INFO  Executing (default): ALTER TABLE `About` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:06:06 INFO  Executing (default): SHOW INDEX FROM `About`
+
+sql: 2022-04-22 22:06:07 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Daily` (`id` INTEGER NOT NULL auto_increment , `content` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:06:07 INFO  Executing (default): SHOW FULL COLUMNS FROM `Daily`;
+
+sql: 2022-04-22 22:06:07 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Daily' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:06:08 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:06:08 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:06:09 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:06:09 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:06:09 INFO  Executing (default): SHOW INDEX FROM `Daily`
+
+sql: 2022-04-22 22:06:09 INFO  Executing (default): INSERT INTO `Admin` (`id`,`userName`,`password`,`avatar`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+
+sql: 2022-04-22 22:07:11 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:07:16 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 22:07:16 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 22:07:16 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:07:17 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 22:07:17 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 22:07:18 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:08:28 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:10:38 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:13:08 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 22:13:08 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 22:13:08 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:15:01 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 22:15:01 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 22:15:01 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:15:10 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 22:15:10 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 22:15:10 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:15:53 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 22:15:53 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 22:15:54 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:15:56 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 22:15:56 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 22:15:56 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:19:31 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:21:18 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:22:32 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:26:05 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:26:36 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:31:21 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:31:22 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 22:31:22 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:31:26 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:31:31 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:31:33 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:31:35 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:31:39 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 22:31:39 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:31:39 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 22:31:39 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:31:39 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:31:44 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:31:47 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-04-22 22:31:48 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:31:49 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-04-22 22:31:50 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:31:51 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:31:52 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:31:53 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:33:51 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:33:52 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 22:33:52 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:33:53 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:33:56 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:33:57 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:33:58 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:33:58 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 22:33:59 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:33:59 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 22:33:59 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:33:59 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:34:00 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:34:01 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-04-22 22:34:02 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:34:06 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-04-22 22:34:09 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:34:24 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:34:31 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:34:38 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:34:57 INFO  Executing (default): SHOW INDEX FROM `Article`
+
+sql: 2022-04-22 22:34:57 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Comment` (`id` INTEGER NOT NULL auto_increment , `nickName` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `ArticleId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:34:58 INFO  Executing (default): SHOW FULL COLUMNS FROM `Comment`;
+
+sql: 2022-04-22 22:34:58 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Comment' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:34:58 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `nickName` `nickName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:34:58 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:34:59 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:34:59 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:35:00 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:35:00 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:35:01 INFO  Executing (default): ALTER TABLE `Comment` ADD FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:35:33 INFO  Executing (default): SHOW INDEX FROM `Comment`
+
+sql: 2022-04-22 22:35:34 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Admin` (`id` INTEGER NOT NULL auto_increment , `userName` VARCHAR(255) NOT NULL, `password` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:35:35 INFO  Executing (default): SHOW FULL COLUMNS FROM `Admin`;
+
+sql: 2022-04-22 22:35:35 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Admin' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:35:41 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `userName` `userName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:35:44 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `password` `password` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:35:49 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:35:53 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:35:59 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:36:00 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:36:00 INFO  Executing (default): SHOW INDEX FROM `Admin`
+
+sql: 2022-04-22 22:36:00 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Project` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `description` VARCHAR(255) NOT NULL, `linkUrl` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255) NOT NULL, `github` VARCHAR(255), `order` INTEGER DEFAULT 1, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:36:00 INFO  Executing (default): SHOW FULL COLUMNS FROM `Project`;
+
+sql: 2022-04-22 22:36:00 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Project' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:36:00 INFO  Executing (default): ALTER TABLE `Project` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:00 INFO  Executing (default): ALTER TABLE `Project` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:01 INFO  Executing (default): ALTER TABLE `Project` CHANGE `linkUrl` `linkUrl` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:01 INFO  Executing (default): ALTER TABLE `Project` CHANGE `thumb` `thumb` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:01 INFO  Executing (default): ALTER TABLE `Project` CHANGE `github` `github` VARCHAR(255);
+
+sql: 2022-04-22 22:36:02 INFO  Executing (default): ALTER TABLE `Project` CHANGE `order` `order` INTEGER DEFAULT 1;
+
+sql: 2022-04-22 22:36:02 INFO  Executing (default): ALTER TABLE `Project` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:36:02 INFO  Executing (default): ALTER TABLE `Project` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:36:03 INFO  Executing (default): ALTER TABLE `Project` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:36:03 INFO  Executing (default): SHOW INDEX FROM `Project`
+
+sql: 2022-04-22 22:36:03 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER NOT NULL auto_increment , `bg` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `qq` VARCHAR(255) NOT NULL, `weixin` VARCHAR(255) NOT NULL, `email` VARCHAR(255) NOT NULL, `selfDescription` TEXT NOT NULL, `icp` VARCHAR(255), `banner` VARCHAR(255), `bannerText` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:36:03 INFO  Executing (default): SHOW FULL COLUMNS FROM `About`;
+
+sql: 2022-04-22 22:36:03 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'About' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:36:03 INFO  Executing (default): ALTER TABLE `About` ADD `icp` VARCHAR(255);
+
+sql: 2022-04-22 22:36:05 INFO  Executing (default): ALTER TABLE `About` ADD `banner` VARCHAR(255);
+
+sql: 2022-04-22 22:36:05 INFO  Executing (default): ALTER TABLE `About` ADD `bannerText` TEXT;
+
+sql: 2022-04-22 22:36:06 INFO  Executing (default): ALTER TABLE `About` CHANGE `bg` `bg` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:06 INFO  Executing (default): ALTER TABLE `About` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:07 INFO  Executing (default): ALTER TABLE `About` CHANGE `qq` `qq` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:07 INFO  Executing (default): ALTER TABLE `About` CHANGE `weixin` `weixin` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:08 INFO  Executing (default): ALTER TABLE `About` CHANGE `email` `email` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:36:09 INFO  Executing (default): ALTER TABLE `About` CHANGE `selfDescription` `selfDescription` TEXT NOT NULL;
+
+sql: 2022-04-22 22:36:10 INFO  Executing (default): ALTER TABLE `About` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:36:10 INFO  Executing (default): ALTER TABLE `About` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:36:11 INFO  Executing (default): ALTER TABLE `About` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:36:11 INFO  Executing (default): SHOW INDEX FROM `About`
+
+sql: 2022-04-22 22:36:12 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Daily` (`id` INTEGER NOT NULL auto_increment , `content` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:36:12 INFO  Executing (default): SHOW FULL COLUMNS FROM `Daily`;
+
+sql: 2022-04-22 22:36:12 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Daily' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:36:14 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:36:14 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:36:15 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:36:15 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:36:16 INFO  Executing (default): SHOW INDEX FROM `Daily`
+
+sql: 2022-04-22 22:36:17 INFO  Executing (default): INSERT INTO `Admin` (`id`,`userName`,`password`,`avatar`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+
+sql: 2022-04-22 22:38:40 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND (`Admin`.`userName` = 'xyq' AND `Admin`.`password` = 'e10adc3949ba59abbe56e057f20f883e')) LIMIT 1;
+
+sql: 2022-04-22 22:38:40 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 22:38:41 INFO  Executing (default): SELECT count(*) AS `count` FROM `Comment` AS `Comment` WHERE (`Comment`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:38:41 INFO  Executing (default): SELECT `id`, `nickName`, `content`, `avatar`, `createdAt`, `updatedAt`, `deletedAt`, `ArticleId` FROM `Comment` AS `Comment` WHERE (`Comment`.`deletedAt` IS NULL) LIMIT 0, 10;
+
+sql: 2022-04-22 22:38:41 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL) WHERE (`Article`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:38:41 INFO  Executing (default): SELECT `Article`.*, `Comments`.`id` AS `Comments.id`, `Comments`.`nickName` AS `Comments.nickName`, `Comments`.`content` AS `Comments.content`, `Comments`.`avatar` AS `Comments.avatar`, `Comments`.`createdAt` AS `Comments.createdAt`, `Comments`.`updatedAt` AS `Comments.updatedAt`, `Comments`.`deletedAt` AS `Comments.deletedAt`, `Comments`.`ArticleId` AS `Comments.ArticleId` FROM (SELECT `Article`.`id`, `Article`.`title`, `Article`.`content`, `Article`.`readCount`, `Article`.`description`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`updatedAt`, `Article`.`deletedAt`, `Article`.`CategoryId` FROM `Article` AS `Article` WHERE (`Article`.`deletedAt` IS NULL) LIMIT 0, 10) AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT count(*) AS `count` FROM `Project` AS `Project` WHERE (`Project`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:38:42 INFO  Executing (default): SELECT `id`, `name`, `description`, `linkUrl`, `thumb`, `github`, `order`, `createdAt`, `updatedAt`, `deletedAt` FROM `Project` AS `Project` WHERE (`Project`.`deletedAt` IS NULL) LIMIT 0, 10;
+
+sql: 2022-04-22 22:38:45 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:39:01 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 22:39:01 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:42:48 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 22:42:48 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:43:06 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:43:08 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 22:43:08 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:44:29 INFO  Executing (default): UPDATE `About` SET `id`=?,`bg`=?,`avatar`=?,`qq`=?,`weixin`=?,`email`=?,`selfDescription`=?,`icp`=?,`banner`=?,`bannerText`=?,`createdAt`=?,`updatedAt`=?,`deletedAt`=? WHERE (`deletedAt` IS NULL AND `id` = ?)
+
+sql: 2022-04-22 22:44:55 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 22:44:55 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:46:34 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:46:53 INFO  Executing (default): UPDATE `About` SET `id`=?,`bg`=?,`avatar`=?,`qq`=?,`weixin`=?,`email`=?,`selfDescription`=?,`icp`=?,`banner`=?,`bannerText`=?,`createdAt`=?,`updatedAt`=?,`deletedAt`=? WHERE (`deletedAt` IS NULL AND `id` = ?)
+
+sql: 2022-04-22 22:48:58 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:48:58 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 22:48:58 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:48:58 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:49:00 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:49:01 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:49:02 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:49:03 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 22:49:03 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:49:03 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 22:49:03 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:49:03 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:49:04 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:49:04 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-04-22 22:49:05 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:49:05 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-04-22 22:49:06 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:49:06 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:49:07 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:49:07 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:49:11 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:49:12 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 22:49:12 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:49:12 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:49:13 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:49:15 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:49:16 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:49:20 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 22:49:21 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:49:22 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 22:49:22 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:49:23 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:49:30 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:49:33 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-04-22 22:49:39 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:49:44 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-04-22 22:49:47 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:49:49 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:49:54 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:50:00 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:50:05 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:51:01 INFO  Executing (default): SHOW INDEX FROM `Article`
+
+sql: 2022-04-22 22:51:02 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Comment` (`id` INTEGER NOT NULL auto_increment , `nickName` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `ArticleId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:51:05 INFO  Executing (default): SHOW FULL COLUMNS FROM `Comment`;
+
+sql: 2022-04-22 22:51:05 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Comment' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:51:07 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `nickName` `nickName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:51:12 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:51:18 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:51:22 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:51:28 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:51:32 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:51:35 INFO  Executing (default): ALTER TABLE `Comment` ADD FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:52:01 INFO  Executing (default): SHOW INDEX FROM `Comment`
+
+sql: 2022-04-22 22:52:01 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Admin` (`id` INTEGER NOT NULL auto_increment , `userName` VARCHAR(255) NOT NULL, `password` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:52:02 INFO  Executing (default): SHOW FULL COLUMNS FROM `Admin`;
+
+sql: 2022-04-22 22:52:02 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Admin' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:52:02 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `userName` `userName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:02 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `password` `password` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:02 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:02 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:52:02 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:52:03 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:52:03 INFO  Executing (default): SHOW INDEX FROM `Admin`
+
+sql: 2022-04-22 22:52:03 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Project` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `description` VARCHAR(255) NOT NULL, `linkUrl` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255) NOT NULL, `github` VARCHAR(255), `order` INTEGER DEFAULT 1, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:52:03 INFO  Executing (default): SHOW FULL COLUMNS FROM `Project`;
+
+sql: 2022-04-22 22:52:03 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Project' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:52:03 INFO  Executing (default): ALTER TABLE `Project` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:04 INFO  Executing (default): ALTER TABLE `Project` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:04 INFO  Executing (default): ALTER TABLE `Project` CHANGE `linkUrl` `linkUrl` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:04 INFO  Executing (default): ALTER TABLE `Project` CHANGE `thumb` `thumb` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:04 INFO  Executing (default): ALTER TABLE `Project` CHANGE `github` `github` VARCHAR(255);
+
+sql: 2022-04-22 22:52:05 INFO  Executing (default): ALTER TABLE `Project` CHANGE `order` `order` INTEGER DEFAULT 1;
+
+sql: 2022-04-22 22:52:05 INFO  Executing (default): ALTER TABLE `Project` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:52:05 INFO  Executing (default): ALTER TABLE `Project` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:52:05 INFO  Executing (default): ALTER TABLE `Project` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:52:06 INFO  Executing (default): SHOW INDEX FROM `Project`
+
+sql: 2022-04-22 22:52:06 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER NOT NULL auto_increment , `bg` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `qq` VARCHAR(255) NOT NULL, `weixin` VARCHAR(255) NOT NULL, `email` VARCHAR(255) NOT NULL, `selfDescription` TEXT NOT NULL, `icp` VARCHAR(255), `banner` VARCHAR(255), `bannerText` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:52:06 INFO  Executing (default): SHOW FULL COLUMNS FROM `About`;
+
+sql: 2022-04-22 22:52:06 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'About' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:52:07 INFO  Executing (default): ALTER TABLE `About` CHANGE `bg` `bg` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:08 INFO  Executing (default): ALTER TABLE `About` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:08 INFO  Executing (default): ALTER TABLE `About` CHANGE `qq` `qq` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:08 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:52:08 INFO  Executing (default): ALTER TABLE `About` CHANGE `weixin` `weixin` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:09 INFO  Executing (default): ALTER TABLE `About` CHANGE `email` `email` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:52:09 INFO  Executing (default): ALTER TABLE `About` CHANGE `selfDescription` `selfDescription` TEXT NOT NULL;
+
+sql: 2022-04-22 22:52:10 INFO  Executing (default): ALTER TABLE `About` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:52:10 INFO  Executing (default): ALTER TABLE `About` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:52:10 INFO  Executing (default): ALTER TABLE `About` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:52:10 INFO  Executing (default): ALTER TABLE `About` CHANGE `icp` `icp` VARCHAR(255);
+
+sql: 2022-04-22 22:52:11 INFO  Executing (default): ALTER TABLE `About` CHANGE `banner` `banner` VARCHAR(255);
+
+sql: 2022-04-22 22:52:11 INFO  Executing (default): ALTER TABLE `About` CHANGE `bannerText` `bannerText` TEXT;
+
+sql: 2022-04-22 22:52:11 INFO  Executing (default): SHOW INDEX FROM `About`
+
+sql: 2022-04-22 22:52:12 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Daily` (`id` INTEGER NOT NULL auto_increment , `content` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:52:12 INFO  Executing (default): SHOW FULL COLUMNS FROM `Daily`;
+
+sql: 2022-04-22 22:52:12 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Daily' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:52:13 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:52:15 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:52:15 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:52:15 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:52:16 INFO  Executing (default): SHOW INDEX FROM `Daily`
+
+sql: 2022-04-22 22:52:16 INFO  Executing (default): INSERT INTO `Admin` (`id`,`userName`,`password`,`avatar`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+
+sql: 2022-04-22 22:54:04 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:56:11 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:56:11 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 22:56:11 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:56:12 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:56:14 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:56:16 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:56:17 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:56:21 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 22:56:22 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:56:23 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 22:56:23 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:56:26 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:56:39 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:56:46 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-04-22 22:56:52 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:56:57 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-04-22 22:57:01 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:57:05 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:57:09 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:57:14 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 22:57:39 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:58:48 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:58:49 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 22:58:49 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:58:50 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:59:01 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:59:06 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:59:13 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:59:19 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 22:59:19 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:59:21 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND (`Admin`.`userName` = 'xyq' AND `Admin`.`password` = 'e10adc3949ba59abbe56e057f20f883e')) LIMIT 1;
+
+sql: 2022-04-22 22:59:21 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 22:59:21 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:59:21 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:59:22 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 22:59:22 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 22:59:47 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:59:47 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 22:59:47 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:59:47 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:59:48 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:59:50 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:59:51 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:59:52 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 22:59:52 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 22:59:52 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 22:59:52 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 22:59:52 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:59:53 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 22:59:54 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-04-22 22:59:54 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 22:59:55 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-04-22 22:59:55 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:59:56 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 22:59:56 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 22:59:57 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 23:00:00 INFO  Executing (default): SHOW INDEX FROM `Article`
+
+sql: 2022-04-22 23:00:01 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Comment` (`id` INTEGER NOT NULL auto_increment , `nickName` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `ArticleId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 23:00:02 INFO  Executing (default): SHOW FULL COLUMNS FROM `Comment`;
+
+sql: 2022-04-22 23:00:02 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Comment' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 23:00:07 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `nickName` `nickName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:00:10 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 23:00:13 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:00:18 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:00:18 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 23:00:18 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:01:00 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 23:01:01 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-04-22 23:01:01 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 23:01:02 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:01:10 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:01:19 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:01:24 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 23:01:28 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-04-22 23:01:29 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 23:01:30 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-04-22 23:01:30 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 23:01:30 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:01:34 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 23:01:39 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-04-22 23:01:48 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:01:53 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-04-22 23:02:01 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:03 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:04 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 23:02:05 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 23:02:09 INFO  Executing (default): SHOW INDEX FROM `Article`
+
+sql: 2022-04-22 23:02:10 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Comment` (`id` INTEGER NOT NULL auto_increment , `nickName` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `ArticleId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-04-22 23:02:10 INFO  Executing (default): SHOW FULL COLUMNS FROM `Comment`;
+
+sql: 2022-04-22 23:02:10 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Comment' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 23:02:10 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `nickName` `nickName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:10 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 23:02:11 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:11 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:11 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:12 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 23:02:12 INFO  Executing (default): ALTER TABLE `Comment` ADD FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-04-22 23:02:16 INFO  Executing (default): SHOW INDEX FROM `Comment`
+
+sql: 2022-04-22 23:02:16 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Admin` (`id` INTEGER NOT NULL auto_increment , `userName` VARCHAR(255) NOT NULL, `password` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 23:02:16 INFO  Executing (default): SHOW FULL COLUMNS FROM `Admin`;
+
+sql: 2022-04-22 23:02:16 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Admin' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 23:02:17 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `userName` `userName` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:18 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `password` `password` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:19 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:19 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:20 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:20 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 23:02:20 INFO  Executing (default): SHOW INDEX FROM `Admin`
+
+sql: 2022-04-22 23:02:20 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Project` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `description` VARCHAR(255) NOT NULL, `linkUrl` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255) NOT NULL, `github` VARCHAR(255), `order` INTEGER DEFAULT 1, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 23:02:20 INFO  Executing (default): SHOW FULL COLUMNS FROM `Project`;
+
+sql: 2022-04-22 23:02:20 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Project' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 23:02:21 INFO  Executing (default): ALTER TABLE `Project` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:22 INFO  Executing (default): ALTER TABLE `Project` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:22 INFO  Executing (default): ALTER TABLE `Project` CHANGE `linkUrl` `linkUrl` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:22 INFO  Executing (default): ALTER TABLE `Project` CHANGE `thumb` `thumb` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:23 INFO  Executing (default): ALTER TABLE `Project` CHANGE `github` `github` VARCHAR(255);
+
+sql: 2022-04-22 23:02:23 INFO  Executing (default): ALTER TABLE `Project` CHANGE `order` `order` INTEGER DEFAULT 1;
+
+sql: 2022-04-22 23:02:23 INFO  Executing (default): ALTER TABLE `Project` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:24 INFO  Executing (default): ALTER TABLE `Project` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:24 INFO  Executing (default): ALTER TABLE `Project` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 23:02:24 INFO  Executing (default): SHOW INDEX FROM `Project`
+
+sql: 2022-04-22 23:02:24 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER NOT NULL auto_increment , `bg` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `qq` VARCHAR(255) NOT NULL, `weixin` VARCHAR(255) NOT NULL, `email` VARCHAR(255) NOT NULL, `selfDescription` TEXT NOT NULL, `icp` VARCHAR(255), `banner` VARCHAR(255), `bannerText` TEXT, `resume` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 23:02:24 INFO  Executing (default): SHOW FULL COLUMNS FROM `About`;
+
+sql: 2022-04-22 23:02:24 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'About' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 23:02:24 INFO  Executing (default): ALTER TABLE `About` ADD `resume` VARCHAR(255);
+
+sql: 2022-04-22 23:02:25 INFO  Executing (default): ALTER TABLE `About` CHANGE `bg` `bg` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:25 INFO  Executing (default): ALTER TABLE `About` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:25 INFO  Executing (default): ALTER TABLE `About` CHANGE `qq` `qq` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:26 INFO  Executing (default): ALTER TABLE `About` CHANGE `weixin` `weixin` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:26 INFO  Executing (default): ALTER TABLE `About` CHANGE `email` `email` VARCHAR(255) NOT NULL;
+
+sql: 2022-04-22 23:02:26 INFO  Executing (default): ALTER TABLE `About` CHANGE `selfDescription` `selfDescription` TEXT NOT NULL;
+
+sql: 2022-04-22 23:02:26 INFO  Executing (default): ALTER TABLE `About` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:26 INFO  Executing (default): ALTER TABLE `About` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:26 INFO  Executing (default): ALTER TABLE `About` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): ALTER TABLE `About` CHANGE `icp` `icp` VARCHAR(255);
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): ALTER TABLE `About` CHANGE `banner` `banner` VARCHAR(255);
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): ALTER TABLE `About` CHANGE `bannerText` `bannerText` TEXT;
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): SHOW INDEX FROM `About`
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Daily` (`id` INTEGER NOT NULL auto_increment , `content` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): SHOW FULL COLUMNS FROM `Daily`;
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Daily' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-04-22 23:02:27 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:28 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-04-22 23:02:28 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-04-22 23:02:28 INFO  Executing (default): SHOW INDEX FROM `Daily`
+
+sql: 2022-04-22 23:02:28 INFO  Executing (default): INSERT INTO `Admin` (`id`,`userName`,`password`,`avatar`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+
+sql: 2022-04-22 23:02:35 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 23:02:35 INFO  Executing (default): SELECT count(*) AS `count` FROM `Comment` AS `Comment` WHERE (`Comment`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:02:35 INFO  Executing (default): SELECT `id`, `nickName`, `content`, `avatar`, `createdAt`, `updatedAt`, `deletedAt`, `ArticleId` FROM `Comment` AS `Comment` WHERE (`Comment`.`deletedAt` IS NULL) LIMIT 0, 10;
+
+sql: 2022-04-22 23:02:35 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL) WHERE (`Article`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:02:35 INFO  Executing (default): SELECT `Article`.*, `Comments`.`id` AS `Comments.id`, `Comments`.`nickName` AS `Comments.nickName`, `Comments`.`content` AS `Comments.content`, `Comments`.`avatar` AS `Comments.avatar`, `Comments`.`createdAt` AS `Comments.createdAt`, `Comments`.`updatedAt` AS `Comments.updatedAt`, `Comments`.`deletedAt` AS `Comments.deletedAt`, `Comments`.`ArticleId` AS `Comments.ArticleId` FROM (SELECT `Article`.`id`, `Article`.`title`, `Article`.`content`, `Article`.`readCount`, `Article`.`description`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`updatedAt`, `Article`.`deletedAt`, `Article`.`CategoryId` FROM `Article` AS `Article` WHERE (`Article`.`deletedAt` IS NULL) LIMIT 0, 10) AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 23:02:36 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:02:37 INFO  Executing (default): SELECT count(*) AS `count` FROM `Project` AS `Project` WHERE (`Project`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:02:37 INFO  Executing (default): SELECT `id`, `name`, `description`, `linkUrl`, `thumb`, `github`, `order`, `createdAt`, `updatedAt`, `deletedAt` FROM `Project` AS `Project` WHERE (`Project`.`deletedAt` IS NULL) LIMIT 0, 10;
+
+sql: 2022-04-22 23:02:38 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:03:02 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:03:14 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:03:40 INFO  Executing (default): UPDATE `About` SET `id`=?,`bg`=?,`avatar`=?,`qq`=?,`weixin`=?,`email`=?,`selfDescription`=?,`icp`=?,`banner`=?,`bannerText`=?,`resume`=?,`createdAt`=?,`updatedAt`=?,`deletedAt`=? WHERE (`deletedAt` IS NULL AND `id` = ?)
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL) WHERE (`Article`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Article`.*, `Comments`.`id` AS `Comments.id`, `Comments`.`nickName` AS `Comments.nickName`, `Comments`.`content` AS `Comments.content`, `Comments`.`avatar` AS `Comments.avatar`, `Comments`.`createdAt` AS `Comments.createdAt`, `Comments`.`updatedAt` AS `Comments.updatedAt`, `Comments`.`deletedAt` AS `Comments.deletedAt`, `Comments`.`ArticleId` AS `Comments.ArticleId` FROM (SELECT `Article`.`id`, `Article`.`title`, `Article`.`content`, `Article`.`readCount`, `Article`.`description`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`updatedAt`, `Article`.`deletedAt`, `Article`.`CategoryId` FROM `Article` AS `Article` WHERE (`Article`.`deletedAt` IS NULL) LIMIT 0, 10) AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:03:49 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 23:03:50 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:04:18 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:04:35 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:05:24 INFO  Executing (default): UPDATE `About` SET `id`=?,`bg`=?,`avatar`=?,`qq`=?,`weixin`=?,`email`=?,`selfDescription`=?,`icp`=?,`banner`=?,`bannerText`=?,`resume`=?,`createdAt`=?,`updatedAt`=?,`deletedAt`=? WHERE (`deletedAt` IS NULL AND `id` = ?)
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT count(*) AS `count` FROM `Comment` AS `Comment` WHERE (`Comment`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `id`, `nickName`, `content`, `avatar`, `createdAt`, `updatedAt`, `deletedAt`, `ArticleId` FROM `Comment` AS `Comment` WHERE (`Comment`.`deletedAt` IS NULL) LIMIT 0, 10;
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL) WHERE (`Article`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Article`.*, `Comments`.`id` AS `Comments.id`, `Comments`.`nickName` AS `Comments.nickName`, `Comments`.`content` AS `Comments.content`, `Comments`.`avatar` AS `Comments.avatar`, `Comments`.`createdAt` AS `Comments.createdAt`, `Comments`.`updatedAt` AS `Comments.updatedAt`, `Comments`.`deletedAt` AS `Comments.deletedAt`, `Comments`.`ArticleId` AS `Comments.ArticleId` FROM (SELECT `Article`.`id`, `Article`.`title`, `Article`.`content`, `Article`.`readCount`, `Article`.`description`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`updatedAt`, `Article`.`deletedAt`, `Article`.`CategoryId` FROM `Article` AS `Article` WHERE (`Article`.`deletedAt` IS NULL) LIMIT 0, 10) AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT count(*) AS `count` FROM `Project` AS `Project` WHERE (`Project`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:05:33 INFO  Executing (default): SELECT `id`, `name`, `description`, `linkUrl`, `thumb`, `github`, `order`, `createdAt`, `updatedAt`, `deletedAt` FROM `Project` AS `Project` WHERE (`Project`.`deletedAt` IS NULL) LIMIT 0, 10;
+
+sql: 2022-04-22 23:08:19 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:08:57 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:13:01 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:13:06 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:13:11 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:13:38 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:13:57 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:14:27 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:15:16 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:15:32 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:18:11 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:19:20 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 23:19:20 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 23:19:20 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:20:18 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 23:20:18 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 23:20:18 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:22:22 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:25:29 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:26:48 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:27:35 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL;
+
+sql: 2022-04-22 23:27:35 INFO  Executing (default): SELECT `Article`.`readCount`, `Article`.`title`, `Article`.`description`, `Article`.`id`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`CategoryId`, `Category`.`id` AS `Category.id`, `Category`.`name` AS `Category.name`, `Category`.`createdAt` AS `Category.createdAt`, `Category`.`updatedAt` AS `Category.updatedAt`, `Category`.`deletedAt` AS `Category.deletedAt` FROM `Article` AS `Article` LEFT OUTER JOIN `Category` AS `Category` ON `Article`.`CategoryId` = `Category`.`id` AND (`Category`.`deletedAt` IS NULL) WHERE `Article`.`deletedAt` IS NULL LIMIT 0, 10;
+
+sql: 2022-04-22 23:27:35 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:27:39 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:30:17 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:32:29 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:34:49 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:37:21 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:39:00 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:39:52 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:41:01 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT count(*) AS `count` FROM `Comment` AS `Comment` WHERE (`Comment`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `id`, `nickName`, `content`, `avatar`, `createdAt`, `updatedAt`, `deletedAt`, `ArticleId` FROM `Comment` AS `Comment` WHERE (`Comment`.`deletedAt` IS NULL) LIMIT 0, 10;
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT count(`Article`.`id`) AS `count` FROM `Article` AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL) WHERE (`Article`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Article`.*, `Comments`.`id` AS `Comments.id`, `Comments`.`nickName` AS `Comments.nickName`, `Comments`.`content` AS `Comments.content`, `Comments`.`avatar` AS `Comments.avatar`, `Comments`.`createdAt` AS `Comments.createdAt`, `Comments`.`updatedAt` AS `Comments.updatedAt`, `Comments`.`deletedAt` AS `Comments.deletedAt`, `Comments`.`ArticleId` AS `Comments.ArticleId` FROM (SELECT `Article`.`id`, `Article`.`title`, `Article`.`content`, `Article`.`readCount`, `Article`.`description`, `Article`.`thumb`, `Article`.`createdAt`, `Article`.`updatedAt`, `Article`.`deletedAt`, `Article`.`CategoryId` FROM `Article` AS `Article` WHERE (`Article`.`deletedAt` IS NULL) LIMIT 0, 10) AS `Article` LEFT OUTER JOIN `Comment` AS `Comments` ON `Article`.`id` = `Comments`.`ArticleId` AND (`Comments`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 7);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 2);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 5);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `Category`.`id`, `Category`.`name`, `Category`.`createdAt`, `Category`.`updatedAt`, `Category`.`deletedAt`, `Articles`.`id` AS `Articles.id`, `Articles`.`title` AS `Articles.title`, `Articles`.`content` AS `Articles.content`, `Articles`.`readCount` AS `Articles.readCount`, `Articles`.`description` AS `Articles.description`, `Articles`.`thumb` AS `Articles.thumb`, `Articles`.`createdAt` AS `Articles.createdAt`, `Articles`.`updatedAt` AS `Articles.updatedAt`, `Articles`.`deletedAt` AS `Articles.deletedAt`, `Articles`.`CategoryId` AS `Articles.CategoryId` FROM `Category` AS `Category` LEFT OUTER JOIN `Article` AS `Articles` ON `Category`.`id` = `Articles`.`CategoryId` AND (`Articles`.`deletedAt` IS NULL) WHERE (`Category`.`deletedAt` IS NULL AND `Category`.`id` = 3);
+
+sql: 2022-04-22 23:55:42 INFO  Executing (default): SELECT `id`, `name`, `createdAt`, `updatedAt`, `deletedAt` FROM `Category` AS `Category` WHERE (`Category`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:55:43 INFO  Executing (default): SELECT count(*) AS `count` FROM `Project` AS `Project` WHERE (`Project`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:55:43 INFO  Executing (default): SELECT `id`, `name`, `description`, `linkUrl`, `thumb`, `github`, `order`, `createdAt`, `updatedAt`, `deletedAt` FROM `Project` AS `Project` WHERE (`Project`.`deletedAt` IS NULL) LIMIT 0, 10;
+
+sql: 2022-04-22 23:55:45 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:57:22 INFO  Executing (default): UPDATE `About` SET `id`=?,`bg`=?,`avatar`=?,`qq`=?,`weixin`=?,`email`=?,`selfDescription`=?,`icp`=?,`banner`=?,`bannerText`=?,`resume`=?,`createdAt`=?,`updatedAt`=?,`deletedAt`=? WHERE (`deletedAt` IS NULL AND `id` = ?)
+
+sql: 2022-04-22 23:58:01 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:58:05 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 23:58:05 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:58:31 INFO  Executing (default): SELECT `id`, `userName`, `password`, `avatar`, `createdAt`, `updatedAt`, `deletedAt` FROM `Admin` AS `Admin` WHERE (`Admin`.`deletedAt` IS NULL AND `Admin`.`id` = 1);
+
+sql: 2022-04-22 23:58:31 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
+sql: 2022-04-22 23:58:45 INFO  Executing (default): UPDATE `About` SET `id`=?,`bg`=?,`avatar`=?,`qq`=?,`weixin`=?,`email`=?,`selfDescription`=?,`icp`=?,`banner`=?,`bannerText`=?,`resume`=?,`createdAt`=?,`updatedAt`=?,`deletedAt`=? WHERE (`deletedAt` IS NULL AND `id` = ?)
+
+sql: 2022-04-22 23:58:51 INFO  Executing (default): SELECT `id`, `bg`, `avatar`, `qq`, `weixin`, `email`, `selfDescription`, `icp`, `banner`, `bannerText`, `resume`, `createdAt`, `updatedAt`, `deletedAt` FROM `About` AS `About` WHERE (`About`.`deletedAt` IS NULL);
+
