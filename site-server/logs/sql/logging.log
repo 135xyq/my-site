@@ -270,3 +270,313 @@ sql: 2022-05-07 19:37:22 INFO  Executing (default): SHOW INDEX FROM `Daily`
 
 sql: 2022-05-07 19:37:22 INFO  Executing (default): INSERT INTO `Admin` (`id`,`userName`,`password`,`avatar`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
 
+sql: 2022-05-07 22:52:42 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:52:42 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-05-07 22:52:42 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:52:42 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:52:43 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:52:45 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:52:46 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:52:47 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-05-07 22:52:47 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:52:47 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-05-07 22:52:47 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:52:47 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:52:50 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-05-07 22:52:50 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-05-07 22:52:51 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:52:51 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-05-07 22:52:52 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:52:53 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:52:53 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:52:55 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-05-07 22:53:02 INFO  Executing (default): SHOW INDEX FROM `Article`
+
+sql: 2022-05-07 22:53:02 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Comment` (`id` INTEGER NOT NULL auto_increment , `nickName` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `ArticleId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:02 INFO  Executing (default): SHOW FULL COLUMNS FROM `Comment`;
+
+sql: 2022-05-07 22:53:02 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Comment' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:02 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `nickName` `nickName` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:03 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-05-07 22:53:03 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:03 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:03 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:04 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:04 INFO  Executing (default): ALTER TABLE `Comment` ADD FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-05-07 22:53:07 INFO  Executing (default): SHOW INDEX FROM `Comment`
+
+sql: 2022-05-07 22:53:07 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Admin` (`id` INTEGER NOT NULL auto_increment , `userName` VARCHAR(255) NOT NULL, `password` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:07 INFO  Executing (default): SHOW FULL COLUMNS FROM `Admin`;
+
+sql: 2022-05-07 22:53:07 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Admin' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:07 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `userName` `userName` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:08 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `password` `password` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:08 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:08 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): SHOW INDEX FROM `Admin`
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Project` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `description` VARCHAR(255) NOT NULL, `linkUrl` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255) NOT NULL, `github` VARCHAR(255), `order` INTEGER DEFAULT 1, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): SHOW FULL COLUMNS FROM `Project`;
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Project' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): ALTER TABLE `Project` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): ALTER TABLE `Project` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:09 INFO  Executing (default): ALTER TABLE `Project` CHANGE `linkUrl` `linkUrl` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:10 INFO  Executing (default): ALTER TABLE `Project` CHANGE `thumb` `thumb` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:10 INFO  Executing (default): ALTER TABLE `Project` CHANGE `github` `github` VARCHAR(255);
+
+sql: 2022-05-07 22:53:11 INFO  Executing (default): ALTER TABLE `Project` CHANGE `order` `order` INTEGER DEFAULT 1;
+
+sql: 2022-05-07 22:53:11 INFO  Executing (default): ALTER TABLE `Project` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:11 INFO  Executing (default): ALTER TABLE `Project` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:12 INFO  Executing (default): ALTER TABLE `Project` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:13 INFO  Executing (default): SHOW INDEX FROM `Project`
+
+sql: 2022-05-07 22:53:13 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER NOT NULL auto_increment , `bg` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `qq` VARCHAR(255) NOT NULL, `weixin` VARCHAR(255) NOT NULL, `email` VARCHAR(255) NOT NULL, `selfDescription` TEXT NOT NULL, `icp` VARCHAR(255), `banner` VARCHAR(255), `bannerText` TEXT, `resume` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:13 INFO  Executing (default): SHOW FULL COLUMNS FROM `About`;
+
+sql: 2022-05-07 22:53:13 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'About' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:13 INFO  Executing (default): ALTER TABLE `About` CHANGE `bg` `bg` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:14 INFO  Executing (default): ALTER TABLE `About` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:14 INFO  Executing (default): ALTER TABLE `About` CHANGE `qq` `qq` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:15 INFO  Executing (default): ALTER TABLE `About` CHANGE `weixin` `weixin` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:15 INFO  Executing (default): ALTER TABLE `About` CHANGE `email` `email` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:15 INFO  Executing (default): ALTER TABLE `About` CHANGE `selfDescription` `selfDescription` TEXT NOT NULL;
+
+sql: 2022-05-07 22:53:16 INFO  Executing (default): ALTER TABLE `About` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:16 INFO  Executing (default): ALTER TABLE `About` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:17 INFO  Executing (default): ALTER TABLE `About` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:17 INFO  Executing (default): ALTER TABLE `About` CHANGE `icp` `icp` VARCHAR(255);
+
+sql: 2022-05-07 22:53:22 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:22 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-05-07 22:53:22 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:22 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:23 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:24 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:25 INFO  Executing (default): ALTER TABLE `Category` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:26 INFO  Executing (default): SHOW INDEX FROM `Category`
+
+sql: 2022-05-07 22:53:26 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Article` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `readCount` INTEGER DEFAULT 0, `description` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `CategoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:26 INFO  Executing (default): SHOW FULL COLUMNS FROM `Article`;
+
+sql: 2022-05-07 22:53:26 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Article' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:26 INFO  Executing (default): ALTER TABLE `Article` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:27 INFO  Executing (default): ALTER TABLE `Article` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-05-07 22:53:28 INFO  Executing (default): ALTER TABLE `Article` CHANGE `readCount` `readCount` INTEGER DEFAULT 0;
+
+sql: 2022-05-07 22:53:29 INFO  Executing (default): ALTER TABLE `Article` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:29 INFO  Executing (default): ALTER TABLE `Article` CHANGE `thumb` `thumb` VARCHAR(255);
+
+sql: 2022-05-07 22:53:30 INFO  Executing (default): ALTER TABLE `Article` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:30 INFO  Executing (default): ALTER TABLE `Article` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:31 INFO  Executing (default): ALTER TABLE `Article` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:32 INFO  Executing (default): ALTER TABLE `Article` ADD FOREIGN KEY (`CategoryId`) REFERENCES `Category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-05-07 22:53:35 INFO  Executing (default): SHOW INDEX FROM `Article`
+
+sql: 2022-05-07 22:53:35 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Comment` (`id` INTEGER NOT NULL auto_increment , `nickName` VARCHAR(255) NOT NULL, `content` TEXT NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, `ArticleId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:36 INFO  Executing (default): SHOW FULL COLUMNS FROM `Comment`;
+
+sql: 2022-05-07 22:53:36 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Comment' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:36 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `nickName` `nickName` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:36 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-05-07 22:53:36 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:37 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:37 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:38 INFO  Executing (default): ALTER TABLE `Comment` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:39 INFO  Executing (default): ALTER TABLE `Comment` ADD FOREIGN KEY (`ArticleId`) REFERENCES `Article` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+sql: 2022-05-07 22:53:43 INFO  Executing (default): SHOW INDEX FROM `Comment`
+
+sql: 2022-05-07 22:53:43 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Admin` (`id` INTEGER NOT NULL auto_increment , `userName` VARCHAR(255) NOT NULL, `password` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:43 INFO  Executing (default): SHOW FULL COLUMNS FROM `Admin`;
+
+sql: 2022-05-07 22:53:43 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Admin' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:43 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `userName` `userName` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:44 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `password` `password` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:44 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:45 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:45 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:45 INFO  Executing (default): ALTER TABLE `Admin` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:46 INFO  Executing (default): SHOW INDEX FROM `Admin`
+
+sql: 2022-05-07 22:53:46 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Project` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `description` VARCHAR(255) NOT NULL, `linkUrl` VARCHAR(255) NOT NULL, `thumb` VARCHAR(255) NOT NULL, `github` VARCHAR(255), `order` INTEGER DEFAULT 1, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:46 INFO  Executing (default): SHOW FULL COLUMNS FROM `Project`;
+
+sql: 2022-05-07 22:53:46 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Project' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:46 INFO  Executing (default): ALTER TABLE `Project` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:46 INFO  Executing (default): ALTER TABLE `Project` CHANGE `description` `description` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:46 INFO  Executing (default): ALTER TABLE `Project` CHANGE `linkUrl` `linkUrl` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:46 INFO  Executing (default): ALTER TABLE `Project` CHANGE `thumb` `thumb` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:47 INFO  Executing (default): ALTER TABLE `Project` CHANGE `github` `github` VARCHAR(255);
+
+sql: 2022-05-07 22:53:47 INFO  Executing (default): ALTER TABLE `Project` CHANGE `order` `order` INTEGER DEFAULT 1;
+
+sql: 2022-05-07 22:53:47 INFO  Executing (default): ALTER TABLE `Project` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:47 INFO  Executing (default): ALTER TABLE `Project` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:47 INFO  Executing (default): ALTER TABLE `Project` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:48 INFO  Executing (default): SHOW INDEX FROM `Project`
+
+sql: 2022-05-07 22:53:48 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER NOT NULL auto_increment , `bg` VARCHAR(255) NOT NULL, `avatar` VARCHAR(255) NOT NULL, `qq` VARCHAR(255) NOT NULL, `weixin` VARCHAR(255) NOT NULL, `email` VARCHAR(255) NOT NULL, `selfDescription` TEXT NOT NULL, `icp` VARCHAR(255), `banner` VARCHAR(255), `bannerText` TEXT, `resume` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:48 INFO  Executing (default): SHOW FULL COLUMNS FROM `About`;
+
+sql: 2022-05-07 22:53:48 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'About' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:48 INFO  Executing (default): ALTER TABLE `About` CHANGE `bg` `bg` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:48 INFO  Executing (default): ALTER TABLE `About` CHANGE `avatar` `avatar` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:48 INFO  Executing (default): ALTER TABLE `About` CHANGE `qq` `qq` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:49 INFO  Executing (default): ALTER TABLE `About` CHANGE `weixin` `weixin` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:49 INFO  Executing (default): ALTER TABLE `About` CHANGE `email` `email` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:53:49 INFO  Executing (default): ALTER TABLE `About` CHANGE `selfDescription` `selfDescription` TEXT NOT NULL;
+
+sql: 2022-05-07 22:53:49 INFO  Executing (default): ALTER TABLE `About` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:50 INFO  Executing (default): ALTER TABLE `About` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:50 INFO  Executing (default): ALTER TABLE `About` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:50 INFO  Executing (default): ALTER TABLE `About` CHANGE `icp` `icp` VARCHAR(255);
+
+sql: 2022-05-07 22:53:50 INFO  Executing (default): ALTER TABLE `About` CHANGE `banner` `banner` VARCHAR(255);
+
+sql: 2022-05-07 22:53:50 INFO  Executing (default): ALTER TABLE `About` CHANGE `bannerText` `bannerText` TEXT;
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): ALTER TABLE `About` CHANGE `resume` `resume` VARCHAR(255);
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): SHOW INDEX FROM `About`
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Daily` (`id` INTEGER NOT NULL auto_increment , `content` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): SHOW FULL COLUMNS FROM `Daily`;
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Daily' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `content` `content` TEXT NOT NULL;
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:53:51 INFO  Executing (default): ALTER TABLE `Daily` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql: 2022-05-07 22:53:52 INFO  Executing (default): SHOW INDEX FROM `Daily`
+
+sql: 2022-05-07 22:53:52 INFO  Executing (default): INSERT INTO `Admin` (`id`,`userName`,`password`,`avatar`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+
+sql: 2022-05-07 22:54:54 INFO  Executing (default): CREATE TABLE IF NOT EXISTS `Category` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+sql: 2022-05-07 22:54:54 INFO  Executing (default): SHOW FULL COLUMNS FROM `Category`;
+
+sql: 2022-05-07 22:54:54 INFO  Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'Category' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='site' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+sql: 2022-05-07 22:54:55 INFO  Executing (default): ALTER TABLE `Category` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql: 2022-05-07 22:54:56 INFO  Executing (default): ALTER TABLE `Category` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+
+sql: 2022-05-07 22:54:57 INFO  Executing (default): ALTER TABLE `Category` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+
